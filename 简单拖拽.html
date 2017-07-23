@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin:0;
+				padding:0;
+			}
+			div{
+				height:100px;
+				width:100px;
+				background:aqua;
+				position:absolute;
+				cursor: pointer;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<div></div>
+	</body>
+	<script>
+		var aDiv=document.getElementsByTagName("div")[0];
+		aDiv.onmousedown=function(e){
+			document.onmouseup=document.onmousemove=null;;
+			
+			var ev=e||event    //event对象的兼容
+			var disx=this.offsetLeft;
+			var disy=this.offsetTop;
+			var cx=ev.clientX;
+			var cy=ev.clientY;
+			var xx=cx-disx;
+			var yy=cy-disy;
+		document.onmousemove=function(e){
+			var ev=e||event    //event对象的兼容
+			cx=ev.clientX;
+			cy=ev.clientY;
+			
+		   aDiv.style.left=(cx-xx)+"px";
+		   aDiv.style.top=(cy-yy)+"px";
+		}
+		document.onmouseup=function(){
+			document.onmouseup=document.onmousemove=null;
+			
+		}
+		}
+	</script>
+</html>
